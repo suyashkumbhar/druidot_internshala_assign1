@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('static/images/background_index2.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 150px;
+            animation: zoomIn 1s ease;
+        }
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        img:hover {
+            transform: scale(1.1); /* Zoom in effect on hover */
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Info</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Mobile Number</th>
+                    <th>Email</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in Person_infos %}
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.address }}</td>
+                    <td>{{ person.mobile_number }}</td>
+                    <td>{{ person.email }}</td>
+                    <td><img src="{{ url_for('static', filename=person.image_path) }}" alt="Image"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
